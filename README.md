@@ -18,7 +18,15 @@ JarLoader.downloadIfNotExists(dependency);
 
 #### 3. Load the jar
 
+If the downloaded file is a Bukkit plugin, you can load it using:
 ```java
-URLClassLoader loader = ...
+Bukkit.getPluginManager().loadPlugin(...)
+```
+
+If the file is a library and not a Bukkit plugin, use the
+`ClassLoader` of your own plugin:
+
+```java
+URLClassLoader loader = (URLClassLoader) plugin.getClassLoader();
 JarLoader.load(dependency, loader);
 ```
